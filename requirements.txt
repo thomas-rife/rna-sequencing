@@ -1,0 +1,9 @@
+torch
+transformers
+pyfaidx
+scikit-learn
+pandas
+numpy
+matplotlib
+tqdm
+requests
