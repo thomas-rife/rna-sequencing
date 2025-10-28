@@ -52,7 +52,7 @@ Sequences are tokenized using the pretrained **[`zhihan1996/DNABERT-2-117M`](htt
 
 All dependencies are listed in `requirements.txt`. I used Python 3.12.9, should work for anything 3.12+
 
-First create a virtual environment in Python:
+First create a virtual environment in Python (macOS):
 
 Create
 
@@ -83,7 +83,7 @@ python scripts/binary_classifier.py
 ```
 
 - Uses the `mps` device on macOS (Apple Silicon) if available, else CPU.
-- Defaults: `batch_size=32`, `epochs=20`, `lr=2e-4`, `weight_decay=1e-5`.
+- Defaults: `batch_size=32`, `epochs=50`, `lr=0.0001`, `weight_decay=1e-5`.
 - Splits 80/20 train–validation randomly (can be changed in `make_dataloaders()`).
 
 Console output shows per-epoch training loss and final validation accuracy.
