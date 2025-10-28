@@ -128,6 +128,9 @@ def evaluate(model, dataloader, criterion, device):
 if __name__ == '__main__':
     # Device
     device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
+    learning_rate = 0.0001
+    weight_decay = 1e-5
+    epochs = 50
 
     prep = Preprocessing('./data/data_sequences.csv')
     input_ids, attention_mask, labels = prep.to_tensors()
@@ -138,10 +141,9 @@ if __name__ == '__main__':
     model = BinaryClassifier(vocab_size=vocab_size, embedding_dim=128).to(device)
 
     criterion = nn.BCEWithLogitsLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-5)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     
     # Train
-    epochs = 50
     for epoch in range(1, epochs + 1):
         train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
         print(f"Epoch {epoch:02d} | train_loss={train_loss:.6f}")
